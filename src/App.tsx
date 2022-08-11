@@ -1,34 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { Routes, Navigate, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Project from "./pages/Project";
+import MainLayout from "./layout/main.layout";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  const increment = () => setCount((count) => count + 1)
-
-  const decrement = () => setCount((count) => count - 1)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>React</h1>
-      <div className="card">
-        <p>
-          count is {count}
-        </p>
-
-        <div>
-          <button onClick={increment}>Increase</button>
-          <button onClick={decrement}>Decrease</button>
-        </div>
-      </div>
-    </div>
-  )
+    <MainLayout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/project" element={<Project />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </MainLayout>
+  );
 }
 
-export default App
+export default App;
